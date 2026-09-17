@@ -29,18 +29,10 @@ Zachary Evans - Corpus: campus_life
 
 ## Chunking Strategy
 
-**Chunk size:**
-**Overlap:**
+**Chunk size: Max of 500 characters**
+**Overlap: 0 characters**
 
-<!-- What about YOUR documents made you pick these numbers? Short posts and
-     long sectioned guides don't want the same chunking, and "800 seemed
-     reasonable" earns nothing. Point at something you noticed when you read
-     the documents in Milestone 1.
-
-     If you changed your mind partway through, say so and say why. That's worth
-     more than pretending you got it right first time.
-
-     Milestone 3. -->
+For the campus_life documents, I decided to chunk the documents based on paragraph boundaries, or making it look for (\n\n), I set 500 as the max for characters in a chunk because the longest document had 549 characters, and I figure that every paragraph would be below that threshold. I did no overlap as most documents and paragraphs are self contained, so there was no need to add overlap.
 
 ## Sample Chunks
 
@@ -53,29 +45,34 @@ Zachary Evans - Corpus: campus_life
 
      Milestone 3. -->
 
-**Chunk 1** — source: `` — produced by: ``
+**Chunk 1** — source:admin_add_drop_deadline.txt#0 `` — produced by: chunker.py::split_documents``
 
 ```
+On the add/drop deadline
 ```
 
-**Chunk 2** — source: `` — produced by: ``
+**Chunk 2** — source: course_cs_210_workload.txt#2 `` — produced by: chunker.py::split_documents ``
 
 ```
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
 ```
 
-**Chunk 3** — source: `` — produced by: ``
+**Chunk 3** — source: course_phys_130.txt#3  `` — produced by: chunker.py::split_documents ``
 
 ```
+The one piece of advice: the lab practical is worth 20% and almost nobody prepares for it.
 ```
 
-**Chunk 4** — source: `` — produced by: ``
+**Chunk 4** — source: dining_verrill_street_grill.txt#1 `` — produced by: chunker.py::split_documents ``
 
 ```
+I'm a junior and I've done this twice now. Wait times: up to 30 minutes on Friday evenings, otherwise under 10. The thing worth going for is the burger, which is the only late-night hot food on campus. The thing to know is that one register, so the queue is a single line no matter how busy.
 ```
 
-**Chunk 5** — source: `` — produced by: ``
+**Chunk 5** — source: housing_morrow_house.txt#2   `` — produced by: chunker.py::split_documents ``
 
 ```
+The good: cheapest housing tier by about $900 a year, and the singles are real singles.
 ```
 
 ## Sample Answer

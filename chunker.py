@@ -82,22 +82,75 @@ def fallback_split(
 
 def split_documents(documents: list[Document]) -> list[Chunk]:
     """
-    Split documents into chunks. ⚠️ REPLACE THE BODY OF THIS IN MILESTONE 3.
+    Split documents into chunks based on paragraph boundaries.
 
-    Right now it just calls the fallback. That is the plain, generic behaviour
-    the brief is talking about.
-
-    When you write your own strategy, set `produced_by` to
-    "chunker.py::split_documents" so your README's Sample Chunks section names
-    the right function. `app.py chunks` prints that string for you.
-
-    Things worth thinking about before you write any code:
-      - Are your documents short posts or long guides?
-      - Is the useful information in one sentence, or spread over a paragraph?
-      - Would splitting on paragraph breaks keep more thoughts intact than
-        splitting on a character count?
+    Strategy:
+    - Split documents at paragraph boundaries (blank lines)
+    - Keep chunks to max 500 characters
+    - Respect word boundaries when splitting oversized paragraphs
+    - No overlap between chunks
     """
-    return fallback_split(documents)
+    chunk_size = 500
+    chunks: list[Chunk] = []
+
+    for doc in documents:
+        paragraphs = doc.text.split('\n\n')
+        index = 0
+
+        for para in paragraphs:
+            para = para.strip()
+            if not para:
+                continue
+
+            if len(para) <= chunk_size:
+                chunks.append(
+                    Chunk(
+                        text=para,
+                        source=doc.source,
+                        index=index,
+                        produced_by="chunker.py::split_documents",
+                    )
+                )
+                index += 1
+            else:
+                words = para.split()
+                current_chunk = []
+                current_length = 0
+
+                for word in words:
+                    word_len = len(word)
+                    space_len = 1 if current_chunk else 0
+
+                    if current_length + space_len + word_len <= chunk_size:
+                        current_chunk.append(word)
+                        current_length += space_len + word_len
+                    else:
+                        if current_chunk:
+                            chunks.append(
+                                Chunk(
+                                    text=' '.join(current_chunk),
+                                    source=doc.source,
+                                    index=index,
+                                    produced_by="chunker.py::split_documents",
+                                )
+                            )
+                            index += 1
+
+                        current_chunk = [word]
+                        current_length = word_len
+
+                if current_chunk:
+                    chunks.append(
+                        Chunk(
+                            text=' '.join(current_chunk),
+                            source=doc.source,
+                            index=index,
+                            produced_by="chunker.py::split_documents",
+                        )
+                    )
+                    index += 1
+
+    return chunks
 
 
 def describe(chunks: list[Chunk]) -> str:
