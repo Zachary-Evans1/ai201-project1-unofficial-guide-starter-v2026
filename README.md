@@ -36,15 +36,6 @@ For the campus_life documents, I decided to chunk the documents based on paragra
 
 ## Sample Chunks
 
-<!-- Five chunks, pasted as text. Label each one and name the file it came from
-     AND the function that produced it — the grader checks your code against
-     what you claim here.
-
-     `python app.py chunks -n 5` prints all three for you. Copy them straight
-     across.
-
-     Milestone 3. -->
-
 **Chunk 1** — source:admin_add_drop_deadline.txt#0 `` — produced by: chunker.py::split_documents``
 
 ```
@@ -80,27 +71,39 @@ The good: cheapest housing tier by about $900 a year, and the singles are real s
 <!-- One complete question and answer, pasted as text, with the source line
      visible. Milestone 4. -->
 
-**Question:**
+**Question: "Do dining dollars transfer from spring to autumn?"**
 
 **Answer:**
 
 ```
+(best distance 0.269, cutoff 0.6)
+
+No, dining dollars do not transfer from spring to the following autumn; whatever is left in May disappears.
+
+Source: admin_dining_dollars.txt
+
+Sources retrieved: admin_dining_dollars.txt, admin_meal_plan_changes.txt, money_jobs.txt
+
+1 model calls this session, 348 tokens (316 in, 32 out)
 ```
 
 **My relevance cutoff:**
 
-<!-- The number you set in config.py, and how you got there.
-
-     You ran five questions your corpus covers and the five in OUT_OF_SCOPE
-     that it clearly doesn't, and wrote down the best distance for each. What
-     did those two groups look like? Where was the gap? Put the actual numbers
-     here — the table below wants all ten rows.
-
-     Milestone 4. -->
+The in-corpus questions had their best distances ranging from 0.2686 to 0.4056 with an average of 0.3264. The out-of-corpus questions had their best distances ranging from 0.7803 to 0.8502 with an average of 0.8169. There is a clear gap between the two groups, with the closest values being 0.3747 apart. I kept the relevance cut off at 0.6 because of this. It safely falls between the two groups while still giving some wiggle room for less sure answers to come through.
 
 | Question | In corpus? | Best distance |
 |---|---|---|
-|  |  |  |
+| "Do dining dollars transfer from spring to autumn?" | Yes | 0.2686 |
+| "Is the Ridgeway Café open on weekends?" | Yes | 0.3016 |
+| "When is it expected to be cold outside?" | Yes | 0.4056 |
+| "When are the walk in hours for the health center?" | Yes | 0.3269 |
+| "When are applications for studying abroad open?" | Yes | 0.3095 |
+| "What is the capital of Mongolia?" | No | 0.7986 |
+| "How do I change the oil in a diesel engine?" | No | 0.8502 |
+| "Who won the 1994 World Cup?" | No | 0.7803 |
+| "What is the recommended dosage of ibuprofen for a headache?" | No | 0.8243 |
+| "How do I write a for loop in Rust?" | No | 0.8313 |
+
 
 ## How I Used AI
 

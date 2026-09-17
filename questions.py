@@ -24,7 +24,7 @@ names a target of "4 of 5", and four of three is not a thing.
 QUESTIONS = [
     # {"question": "...", "expects": "..."},
     {"question": "Do dining dollars transfer from spring to autumn?", "expects": "No, Whatever is left in May disappears"},
-    {"question": "Is the Ridgeway Café open on weekends", "expects": "No, only weekdays"},
+    {"question": "Is the Ridgeway Café open on weekends?", "expects": "No, only weekdays"},
     {"question": "When is it expected to be cold outside?", "expects": "Mid-November to early March"},
     {"question": "When are the walk in hours for the health center?", "expects": "8am to 11am"},
     {"question": "When are applications for studying abroad open?", "expects": "October for the following academic year"},
