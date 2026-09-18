@@ -21,11 +21,7 @@ Zachary Evans - Corpus: campus_life
 
 ## What This Does
 
-<!-- Three or four sentences. Which corpus you picked, and the kinds of
-     questions your system answers. Write it for someone who has never seen
-     this repo.
-
-     Milestone 5. -->
+This repo uses the campus_life corpus, which contains of a bunch of short posts about information and student life at an unnamed university. The system lets a user ask questions about information covered by the corpus and retrieves relevant documents to help answer them. This is a Retrieval-Augmented Generation (RAG) AI system, which uses retrieved information from the corpus to answer a question. It also is grounded so the Gemini answers only use the provided documents without relying on outside information.
 
 ## Chunking Strategy
 
@@ -118,7 +114,11 @@ The in-corpus questions had their best distances ranging from 0.2686 to 0.4056 w
 
 **1.**
 
+I only used Claude code once, to generate my chunking function. It followed my instructions well so I did not have to change anything about. I told it I wanted the documents split by paragraphs, a maximum chunk size of 500 characters and no overlap. When I tested it myself, I found that splitting at paragraphs could create chunks out of heading, such as "On the add/drop deadline," but it met my 4th criteria with 4/5 chunks being complete thoughts, and the system worked, so I left it as is for now.
+
 **2.**
+
+I used ChatGPT to help brainstorm a lot and also to make sure I wasn't overlooking steps. I specifically used it to help calculate the average/mean and the gap for the retrieval results. The ranges were both decently below and above the cutoff of 0.6, so I didn't change the cutoff at all. It was working and there was a clear gap between the in-corpus and out-of-corpus scores.
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never

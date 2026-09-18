@@ -19,13 +19,11 @@ pipeline earns credit; *"80% seemed reasonable"* does not.
 
 ## 1. Retrieved chunks contain the answer
 
-For at least 4 of my 5 test questions, the retrieved chunks include one that
-contains the answer.
+For at least 4 of my 5 test questions, the retrieved chunks include one that contains the answer.
 
 **Why this target:**
-<!-- e.g. "One of my questions is about a topic only two documents mention, so
-     I expect that one to be hard." -->
 
+The system's whole purpose is to answer a user's questions about the chosen corpus. Making it so 4/5 need to contain the answer to a question is reasonable because it will show the system can fulfill its purpose the vast majority of the time.
 ---
 
 ## 2. Every answer names a source
@@ -33,35 +31,26 @@ contains the answer.
 Every answer the system produces names at least one source document.
 
 **Why this target:**
-<!-- Why all five and not four? What about your setup makes that achievable —
-     or what would have to go wrong for it not to be? -->
 
+To ground the answers in the information from the chosen corpus, the answers need to be sourced from the retrieved documents. The system's grounding instructions require it to name the document the answer came from, so needing every answer to have a source is reasonable because the system is given clear instructions to not use outside information.
 ---
 
 ## 3. The relevance gate stops out-of-corpus questions
 
-When I ask a question my documents clearly don't cover, the relevance gate
-stops it and the system returns "I don't have enough information about that" —
-in at least 4 of 5 tries.
-
-<!-- The five questions are the ones in `OUT_OF_SCOPE` at the bottom of
-     `questions.py`, and `run_eval.py` puts them through the gate and writes
-     what happened into your run log. Swap them for your own if you'd rather —
-     just keep five of them, or the "4 of 5" above has nothing to be 4 of. -->
+When I ask a question my documents clearly don't cover, the relevance gate stops it and the system returns "I don't have enough information about that" — in at least 4 of 5 tries.
 
 **Why this target:**
-<!-- What did your distances look like when you set the cutoff in Milestone 4?
-     Was there a clean gap, or did the two groups overlap? -->
 
+I chose 4/5 because there was a clear gap between the in-scope and out-of-scope distances when I tested the relevance cutoff. The closest out-of-scope answer had a distance of 0.7803 which is 0.1803 away from the cutoff point of 0.6. So I can expect the relevance gate to stop most out-of-scope questions.
 ---
 
 ## 4. Something about your chunks
 
-At least 4 out of 5 chunks contain enough information to answer the user's question if the question is related to the corpus.
+At least 4 out of 5 chunks are complete and self-contained thoughts, not sentence fragments or headings.
 
 **Why this target:**
 
-I chose this target because the exact size of the chunk doesn't matter; what matters is if the user is given enough information to answer their question. I choose 4/5 to give the system some room for mistakes while still providing enough information the majority (80%) of the time.
+I chose this target because I plan to split based on paragraphs. If a post has a header, it might get split into its own chunk. I chose 4/5 as it will ensure that at least 80% of chunks will be complete thoughts that can answer a users question.
 ---
 
 ## 5. Your choice
