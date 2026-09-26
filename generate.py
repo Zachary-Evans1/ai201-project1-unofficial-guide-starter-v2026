@@ -278,7 +278,8 @@ GROUNDING_INSTRUCTION = """You answer questions using only the documents provide
 Rules:
 - Use only the information in the documents below. Do not use anything you know from elsewhere.
 - If the documents don't cover the question, say you don't have enough information. Do not guess.
-- Name the document your answer came from, using the filename given in each excerpt.
+- Always name the document your answer came from.
+- End every answer with `Source: filename`, using the exact filename given in the excerpt.
 - Be brief. Two or three sentences is usually enough."""
 
 
@@ -297,7 +298,9 @@ def build_prompt(question: str, results) -> str:
     return (
         f"Documents:\n\n{context}\n\n"
         f"---\n\nQuestion: {question}\n\n"
-        f"Answer using only the documents above, and name the file you used."
+        f"Answer using only the documents above. If you answer using information "
+        f"from a document, end your answer with `Source: filename`, using the "
+        f"exact filename of the document you used."
     )
 
 
