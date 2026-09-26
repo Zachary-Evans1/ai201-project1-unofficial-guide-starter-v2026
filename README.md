@@ -120,6 +120,10 @@ I only used Claude code once, to generate my chunking function. It followed my i
 
 I used ChatGPT to help brainstorm a lot and also to make sure I wasn't overlooking steps. I specifically used it to help calculate the average/mean and the gap for the retrieval results. The ranges were both decently below and above the cutoff of 0.6, so I didn't change the cutoff at all. It was working and there was a clear gap between the in-corpus and out-of-corpus scores.
 
+**3.**
+
+For Unit 2, I used ChatGPT to help me interpret the assignment requirements, review my criterion verdicts and diagnoses and check the wording of what I wrote in my README sections. I also used to to help change the grounding instructions in generate.py for my fix during Milestone 4. It's fix worked well and it now consistently names the source fore every answer
+
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
      claims earns nothing.
@@ -319,13 +323,7 @@ Mechanism: The paragraph-based chunker creates many small chunks because it trea
 
 **Why I picked it: Criterion 2 was missed because the generated answer did not consistently contain a source, even though the source filenames were included in the retrieved results.**
 
-<!-- Connect it to a specific diagnosis above in one sentence. If you can't,
-     you picked a fix because it sounded impressive. -->
-
 ### Run Log — After
-
-<!-- Same format, same five criteria, three runs each.
-     `python run_eval.py --label after` -->
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
@@ -337,31 +335,17 @@ Mechanism: The paragraph-based chunker creates many small chunks because it trea
 
 **Did it help?**
 
-<!-- Say plainly whether it did, and how you know. If it made things worse,
-     say that — a change that backfired, honestly reported, earns full credit
-     and is more interesting than one that worked. What matters is that you can
-     tell.
-
-     Milestone 4. -->
-
 Yes, It worked. All 15 answers over the three runs contained a source. Before the change, Criterion 2 scored 0/5, 3/5 and 2/5; after the change it scored 5/5 every run. The source naming is now consistently working instead of failing in most runs
 
 ## What's Still Broken
 
-<!-- For each criterion still missed after your fix: what you'd do about it,
-     and why you stopped where you did.
+The chunker is still broken; it's still generating headers as their own chunks. I didn't fix it as the assignment only asked for one fix for Milestone 4, and the fix for Criterion 2 had nothing to do with the chunker. I also wanted to leave an improvement for the stretch goal.
 
-     "I ran out of time" is fine if it's true. Pretending nothing is left is
-     not.
-
-     Milestone 5. -->
+The scorer has trouble with my third expected answer: "8am to 11am" as it generates "8:00AM to 11:00AM" instead. I didn't fix this because when I tried to change the scorer, it caused more problems. The system is also answering the question correctly; if a person asked the system the question they would get a readable answer. It's just not using the time format I expected.
 
 ## What I'd Do Differently
 
-<!-- Knowing what you know now — which of your five criteria would you write
-     differently, and why?
-
-     Milestone 5. -->
+I would change Criteria #5, I feel like 200 chunks or fewer was way to low of a goal to set for my system and the way I wanted to generate chunks. I would set a higher target like 250 or 300 that better matches my chunking strategy.
 
 
 ## The Improvement - Stretch Feature

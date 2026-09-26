@@ -26,7 +26,7 @@ QUESTIONS = [
     {"question": "Do dining dollars transfer from spring to autumn?", "expects": "No, Whatever is left in May disappears"},
     {"question": "Is the Ridgeway Café open on weekends?", "expects": "No, only weekdays"},
     {"question": "When is it expected to be cold outside?", "expects": "Mid-November to early March"},
-    {"question": "When are the walk in hours for the health center?", "expects": "8 am to 11 am"},
+    {"question": "When are the walk in hours for the health center?", "expects": "8am to 11am"},
     {"question": "When are applications for studying abroad open?", "expects": "October for the following academic year"},
 ]
 
